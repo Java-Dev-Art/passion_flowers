@@ -15,6 +15,6 @@ public enum CommandType {
     }
     public static Command findCommand(String commandStr){
 
-        return CommandType.valueOf(commandStr.toUpperCase()).getCommand();// todo
+        return CommandType.valueOf(commandStr.toUpperCase()).getCommand();// td
     }
 }
