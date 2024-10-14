@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Properties>
+<!--        <property name="BASE_PATH">${sys:catalina.logs}/webapp/passion_log</property>-->
+        <property name="LOG_DIR">/Users/arturmarkowski/Documents/ESDE_java_3/passion_flowers/logs</property>
+        <property name="ARCHIVE_LOG_DIR">${LOG_DIR}/archive</property>
+        <property name="pattern_file">%d{HH:mm:ss.SSS} - %-5level %logger{5} - Method: %M; Line:  %L - %msg%n</property>
+    </Properties>
+
+    <Appenders>
+
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%r %-5level %logger{1}  -Method: %M; Line: %L - %msg%n"/>
+        </Console>
+        <File name="XMLPassionLogFile" fileName="${LOG_DIR}/passion_log.xml" class="org.apache.log4j.FileAppender" bufferedIO="true">
+            <layout class="org.apache.log4j.PatternLayout" >
+                <param name="ConversionPattern" value="%d{dd.MM.yyyy HH:mm:ss} [%t] %-5p %c- %m%n"/>
+            </layout>
+            <PatterLayout pattern="${pattern_file}"/>
+        </File>
+        <File name="PassionLogFile" fileName="${LOG_DIR}/passion_log.txt" bufferedIO="true">
+            <PatterLayout pattern="${pattern_file}"/>
+        </File>
+
+        <RollingFile name="FileRolling" filename="${LOG_DIR}/text_log.log" append="true"
+                     filePattern="${LOG_DIR}/${date:yyyy-MM-dd}/%d{yyyy-MM-dd_HH-mm}_%i.log">
+            <PatternLayout pattern="${pattern_file}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="50KB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="Log_Console" level="debug" additivity="true">
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <Logger name="Log_File" level="trace" additivity="false">
+                <AppenderRef ref="PassionLogFile"/>
+        </Logger>
+
+        <Logger name="Rolling_File" level="debug" additivity="false">
+            <AppenderRef ref="FileRolling"/>
+        </Logger>
+
+        <Logger name="XML_File" level="debug" additivity="false">
+            <AppenderRef ref="XMLPassionLogFile"/>
+        </Logger>
+
+
+        <!-- Root Logger -->
+        <Root level="all">
+            <AppenderRef ref="PassionLogFile"/>
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="FileRolling"/>
+            <AppenderRef ref="XMLPassionLogFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
