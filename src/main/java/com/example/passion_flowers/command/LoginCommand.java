@@ -2,6 +2,7 @@ package com.example.passion_flowers.command;
 
 import com.example.passion_flowers.service.UserService;
 import com.example.passion_flowers.service.impl.UserServiceImpl;
+import com.example.passion_flowers.view.ViewJSPType;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,8 +10,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.passion_flowers.view.ViewJSPType.LOGIN;
-import static com.example.passion_flowers.view.ViewJSPType.MAIN;
+
 
 public class LoginCommand implements Command{
     final static Logger logger = LogManager.getLogger(LoginCommand.class);
@@ -28,10 +28,10 @@ public class LoginCommand implements Command{
             logger.info("login saccesful");
             request.setAttribute("mas",mas);
             request.setAttribute("user", login);
-            page = MAIN.getPage();
+            page = ViewJSPType.MAIN;
         }else {
             request.setAttribute("errorLoginPassMessage", "Incorrect Login or Password");
-            page = LOGIN.getPage();
+            page = ViewJSPType.LOGIN;
         }
         return page;
     }

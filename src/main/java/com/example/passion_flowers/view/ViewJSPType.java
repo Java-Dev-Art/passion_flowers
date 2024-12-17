@@ -1,16 +1,7 @@
 package com.example.passion_flowers.view;
 
-public enum ViewJSPType {
-    ERROR("jsp/error.jsp"),
-    MAIN("jsp/main.jsp"),
-    LOGIN("jsp/login.jsp");
-    private final String page;
-
-    ViewJSPType(String page) {
-        this.page = page;
-    }
-
-    public String getPage() {
-        return page;
-    }
+public class ViewJSPType {
+    public static final String ERROR = "jsp/error.jsp";
+    public static final String MAIN = "jsp/main.jsp";
+    public static final String LOGIN = "jsp/login.jsp";
 }
