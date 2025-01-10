@@ -2,6 +2,7 @@ package com.example.passion_flowers.controller;
 
 import com.example.passion_flowers.command.Command;
 import com.example.passion_flowers.command.CommandType;
+import com.example.passion_flowers.service.ServiceException;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -24,15 +25,23 @@ public class Controller extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processRequest(req, resp);
+        try {
+            processRequest(req, resp);
+        } catch (ServiceException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        processRequest(req, resp);
+        try {
+            processRequest(req, resp);
+        } catch (ServiceException e) {
+            throw new RuntimeException(e);
+        }
     }
-    private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, ServiceException {
         resp.setContentType("text/html");
         System.out.println("processRequest");
         String commandStr = req.getParameter("command");

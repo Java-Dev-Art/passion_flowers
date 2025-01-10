@@ -1,4 +1,5 @@
-package com.example.passion_flowers.dao;
+package com.example.passion_flowers.dao.idontknow.impl;
+import com.example.passion_flowers.dao.DaoException;
 import com.example.passion_flowers.entity.Entity;
 
 import java.sql.Connection;
