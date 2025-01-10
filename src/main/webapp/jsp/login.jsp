@@ -53,5 +53,9 @@
         <br/><br/>
         <input type="submit" value="Send message!"/>
     </form>
+<label/>
+    <form action="${pageContext.request.contextPath}/telegabot" method="get">
+        <button type="submit">Start Telegram Bot</button>
+    </form>
 </body>
 </html>
